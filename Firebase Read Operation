@@ -13,3 +13,15 @@ public async Task<List<MarketEntry>> ViewAllMarketRecord()
 					EntryDate = item.Object.EntryDate
 				}).ToList();
 		}
+
+
+=========================================================================================
+
+public async Task<MarketEntry> ViewMarketRecordByUser(string user)
+		{
+			var marketer = await ViewAllMarketRecord();
+			await createClient.GetClient().Child("Tbl_Marketing").OnceAsync<MarketEntry>();
+			return marketer.Where(m => m.CreatedBy.Equals(user)).FirstOrDefault();
+		}
+		
+========================================================================================
