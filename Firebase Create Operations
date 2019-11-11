@@ -1,0 +1,31 @@
+public async Task SaveLogAudit()
+		{
+			LogAudit audit = new LogAudit()
+			{
+				LogID = GloballyFields.LogID,
+				User = GloballyFields.User,
+				MethodName = GloballyFields.MethodName,
+				ActionName = GloballyFields.ActionName,
+				LogDate = GloballyFields.CreatedDate
+			};
+
+			await createClient.GetClient().Child("Tbl_Audit").PostAsync(audit);
+		}
+    
+    =====================================================================
+    
+    public async Task CreateAdmin(CreateAdminAccount addAdmin)
+		{
+			addAdmin = new CreateAdminAccount()
+			{
+				UniqueUID = GloballyFields.UniqueUID,
+				FullName = GloballyFields.FullName,
+				Email = GloballyFields.Email,
+				Mobile = GloballyFields.Mobile,
+				Password = GloballyFields.Password,
+				AdminTagNo = GloballyFields.CompanyPrefix + GloballyFields.AdminTagNo,
+				CreatedDate = GloballyFields.CreatedDate
+			};
+
+			await createClient.GetClient().Child("Tbl_Admin").PostAsync(addAdmin);
+		}
