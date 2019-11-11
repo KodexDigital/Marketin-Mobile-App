@@ -1,0 +1,15 @@
+public async Task<List<MarketEntry>> ViewAllMarketRecord()
+		{
+			return (await createClient.GetClient().Child("Tbl_Marketing").OnceAsync<MarketEntry>())
+				.Select(item => new MarketEntry
+				{
+					CustomerName = item.Object.CustomerName,
+					CustomerEmail = item.Object.CustomerEmail,
+					CustomerMobileNo = item.Object.CustomerMobileNo,
+					MarketingType = item.Object.MarketingType,
+					CreatedBy = item.Object.CreatedBy,
+					Facebook = item.Object.Facebook,
+					Whatsapp = item.Object.Whatsapp,
+					EntryDate = item.Object.EntryDate
+				}).ToList();
+		}
